@@ -9,13 +9,12 @@ import os
 import json
 import datetime
 stemmer = LancasterStemmer()
-from xml.dom.minidom import parse
-import xml.dom.minidom
-from pprint import pprint
-import datetime
-from datetime import datetime
 
 training_data = []
+
+from xml.dom.minidom import parse
+import xml.dom.minidom
+
 # Open XML document using minidom parser
 DOMTree = xml.dom.minidom.parse("data.xml")
 collection = DOMTree.documentElement
@@ -249,13 +248,6 @@ y = np.array(output)
 
 start_time = time.time()
 
-
-
-with open('synapses.json') as data_file:
-    data = json.load(data_file)
-
-print(data["datetime"])
-
 train(X, y, hidden_neurons=20, alpha=0.1, epochs=100000, dropout=False, dropout_percent=0.2)
 
 elapsed_time = time.time() - start_time
@@ -283,5 +275,5 @@ def classify(sentence, show_details=False):
     return return_results
 
 
-#classify("Do you love me?",show_details=True)
-#classify("Earth",show_details=True)
+classify("Do you love me?",show_details=True)
+classify("We are well.",show_details=True)
