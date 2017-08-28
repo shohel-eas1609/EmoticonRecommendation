@@ -62,7 +62,7 @@ classes = list(set(classes))
 
 print(len(documents), "documents")
 print(len(classes), "classes", classes)
-#print(len(words), "unique stemmed words", words)
+print(len(words), "unique stemmed words", words)
 
 # In[5]:
 
@@ -90,8 +90,8 @@ for doc in documents:
     output_row[classes.index(doc[1])] = 1
     output.append(output_row)
 
-#print("# words", len(words))
-#print("# classes", len(classes))
+print("# words", len(words))
+print("# classes", len(classes))
 
 # In[6]:
 
@@ -137,16 +137,16 @@ def bow(sentence, words, show_details=False):
         for i, w in enumerate(words):
             if w == s:
                 bag[i] = 1
-                #if show_details:
-                 #   print("found in bag: %s" % w)
+                if show_details:
+                    print("found in bag: %s" % w)
 
     return (np.array(bag))
 
 
 def think(sentence, show_details=False):
     x = bow(sentence.lower(), words, show_details)
-   # if show_details:
-        #print("sentence:", sentence, "\n bow:", x)
+    if show_details:
+        print("sentence:", sentence, "\n bow:", x)
     # input layer is our bag of words
     l0 = x
     # matrix multiplication of input and hidden layer
@@ -271,7 +271,7 @@ def classify(sentence, show_details=False):
     results = [[i, r] for i, r in enumerate(results) if r > ERROR_THRESHOLD]
     results.sort(key=lambda x: x[1], reverse=True)
     return_results = [[classes[r[0]], r[1]] for r in results]
-    print("%s \n classification: %s" % (sentence, return_results))
+    print("classification: %s" % (return_results))
     return return_results
 
 
