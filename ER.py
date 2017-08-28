@@ -252,18 +252,15 @@ start_time = time.time()
 
 with open('synapses.json') as data_file:
     data = json.load(data_file)
-print(data["datetime"])
-print (time.time())
 
 if(time.time()-data["datetime"])>1800:
     train(X, y, hidden_neurons=20, alpha=0.1, epochs=20000, dropout=False, dropout_percent=0.2)
+    elapsed_time = time.time() - start_time
+    print("processing time:", elapsed_time, "seconds")
 
 
 #*****************************************************************************************************
-#train(X, y, hidden_neurons=20, alpha=0.1, epochs=20000, dropout=False, dropout_percent=0.2)
 
-elapsed_time = time.time() - start_time
-print("processing time:", elapsed_time, "seconds")
 
 # In[16]:
 
@@ -288,4 +285,4 @@ def classify(sentence, show_details=False):
 
 
 classify("Do you love me?",show_details=True)
-classify("We are not.",show_details=True)
+classify("We are not well.",show_details=True)
