@@ -62,7 +62,7 @@ classes = list(set(classes))
 
 print(len(documents), "documents")
 print(len(classes), "classes", classes)
-print(len(words), "unique stemmed words", words)
+#print(len(words), "unique stemmed words", words)
 
 # In[5]:
 
@@ -90,8 +90,8 @@ for doc in documents:
     output_row[classes.index(doc[1])] = 1
     output.append(output_row)
 
-print("# words", len(words))
-print("# classes", len(classes))
+#print("# words", len(words))
+#print("# classes", len(classes))
 
 # In[6]:
 
@@ -137,16 +137,16 @@ def bow(sentence, words, show_details=False):
         for i, w in enumerate(words):
             if w == s:
                 bag[i] = 1
-                if show_details:
-                    print("found in bag: %s" % w)
+                #if show_details:
+                 #   print("found in bag: %s" % w)
 
     return (np.array(bag))
 
 
 def think(sentence, show_details=False):
     x = bow(sentence.lower(), words, show_details)
-    if show_details:
-        print("sentence:", sentence, "\n bow:", x)
+    #if show_details:
+     #   print("sentence:", sentence, "\n bow:", x)
     # input layer is our bag of words
     l0 = x
     # matrix multiplication of input and hidden layer
@@ -162,7 +162,7 @@ def think(sentence, show_details=False):
 def train(X, y, hidden_neurons=10, alpha=1, epochs=50000, dropout=False, dropout_percent=0.5):
     print("Training with %s neurons, alpha:%s, dropout:%s %s" % (
     hidden_neurons, str(alpha), dropout, dropout_percent if dropout else ''))
-    print("Input matrix: %sx%s    Output matrix: %sx%s" % (len(X), len(X[0]), 1, len(classes)))
+    #print("Input matrix: %sx%s    Output matrix: %sx%s" % (len(X), len(X[0]), 1, len(classes)))
     np.random.seed(1)
 
     last_mean_error = 1
@@ -253,7 +253,7 @@ start_time = time.time()
 with open('synapses.json') as data_file:
     data = json.load(data_file)
 
-if(time.time()-data["datetime"])>1:
+if(time.time()-data["datetime"])>1800:
     train(X, y, hidden_neurons=20, alpha=0.1, epochs=100000, dropout=False, dropout_percent=0.2)
     elapsed_time = time.time() - start_time
     print("processing time:", elapsed_time, "seconds")
@@ -291,39 +291,34 @@ def classify(sentence, nLike, nLove, nHaha, nSad, nWow, nAngry, show_details=Fal
 
 
     #********************* Switch Case Equivalant ************************
-
-    #if(return_results[0][0]=="like"):
-     #   nLike = nLike + return_results[0][1] * 100
-
-    # ********************* Switch Case Equivalant ************************
-
     for idx, val in enumerate(results):
-        print(idx, val[1])
+        #print(idx, val[1])
         if(return_results[idx][0]=="like"):
-           nLike = nLike + val[1] * 100
+           nLike = nLike + val[1] * 50
 
         if (return_results[idx][0] == "love"):
-            nLove = nLove + val[1] * 100
+            nLove = nLove + val[1] * 50
 
         if (return_results[idx][0] == "haha"):
-            nHaha = nHaha + val[1] * 100
+            nHaha = nHaha + val[1] * 50
 
         if (return_results[idx][0] == "sad"):
-            nSad = nSad + val[1] * 100
+            nSad = nSad + val[1] * 50
 
         if (return_results[idx][0] == "wow"):
-            nWow = nWow + val[1] * 100
+            nWow = nWow + val[1] * 50
 
         if (return_results[idx][0] == "angry"):
-            nAngry = nAngry + val[1] * 100
+            nAngry = nAngry + val[1] * 50
+    # <<<<<<<<<<<<<<<<<<<<<<<Switch Case Equivalant >>>>>>>>>>>>>>>>>>>>>>>>>
 
-
-    print(nLike, nLove, nHaha, nWow, nSad, nAngry)
+    print("| Like: "+str(nLike)+" || Love: "+str(nLove)+" || Haha: "+str(nHaha)+" || Sad: "+str(nSad)+" || Wow: "+str(nWow)+" || Angry: "+str(nAngry)+" |")
 
 
     print("classification: %s" % (return_results))
     return return_results
 
+#****************************** Input sentences and call predictor *****************************************************
 tempStr = 'a'
 while tempStr != "":
     tempStr = input("Enter sentence: ")
@@ -337,6 +332,5 @@ while tempStr != "":
     nAngry = int(input("Angry = ") or "0")
     classify(tempStr, nLike, nLove, nHaha, nSad, nWow, nAngry, show_details=True)
     print("Press only ENTER to exit")
-#classify("We are not well.",show_details=True)
 
 #***********************************************************************************************************************
