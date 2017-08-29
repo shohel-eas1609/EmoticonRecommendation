@@ -253,8 +253,8 @@ start_time = time.time()
 with open('synapses.json') as data_file:
     data = json.load(data_file)
 
-if(time.time()-data["datetime"])>1800:
-    train(X, y, hidden_neurons=20, alpha=0.1, epochs=20000, dropout=False, dropout_percent=0.2)
+if(time.time()-data["datetime"])>1:
+    train(X, y, hidden_neurons=20, alpha=0.1, epochs=10000, dropout=False, dropout_percent=0.2)
     elapsed_time = time.time() - start_time
     print("processing time:", elapsed_time, "seconds")
 
@@ -283,6 +283,9 @@ def classify(sentence, show_details=False):
     print("classification: %s" % (return_results))
     return return_results
 
-
-classify("Do you love me?",show_details=True)
-classify("We are not well.",show_details=True)
+tempStr = 'a'
+while tempStr != "":
+    tempStr = input("Enter sentence: ")
+    classify(tempStr,show_details=True)
+    print("CTRL + F2 to exit")
+#classify("We are not well.",show_details=True)
