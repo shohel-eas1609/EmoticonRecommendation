@@ -3,12 +3,33 @@
 
 <info title="Enemy Behind">
    <genere>love</genere>
-   <sentence>I love you. You are my dream.</sentence>
+   <sentence>I love you</sentence>
 </info>
 
 <info title="Enemy Behind">
    <genere>like</genere>
-   <sentence>I am well.</sentence>
+   <sentence>I am well</sentence>
 </info>
+
+<info title="Enemy Behind">
+   <genere>haha</genere>
+   <sentence>You are so funny</sentence>
+</info>
+
+<info title="Enemy Behind">
+   <genere>wow</genere>
+   <sentence>That is amazing</sentence>
+</info>
+
+<info title="Enemy Behind">
+   <genere>angry</genere>
+   <sentence>I will kill you</sentence>
+</info>
+
+<info title="Enemy Behind">
+   <genere>sad</genere>
+   <sentence>I am unhappy</sentence>
+</info>
+
 
 </collection>

@@ -253,8 +253,8 @@ start_time = time.time()
 with open('synapses.json') as data_file:
     data = json.load(data_file)
 
-if(time.time()-data["datetime"])>1800:
-    train(X, y, hidden_neurons=20, alpha=0.1, epochs=10000, dropout=False, dropout_percent=0.2)
+if(time.time()-data["datetime"])>1:
+    train(X, y, hidden_neurons=20, alpha=0.1, epochs=100000, dropout=False, dropout_percent=0.2)
     elapsed_time = time.time() - start_time
     print("processing time:", elapsed_time, "seconds")
 
@@ -281,8 +281,8 @@ def classify(sentence, nLike, nLove, nHaha, nSad, nWow, nAngry, show_details=Fal
     results.sort(key=lambda x: x[1], reverse=True)
     return_results = [[classes[r[0]], r[1]] for r in results]
 
-    total_reaction = nLike + nLove + nHaha + nSad + nWow + nAngry
-    nLike=( nLike / total_reaction) * 100
+    total_reaction = nLike + nLove + nHaha + nSad + nWow + nAngry +1
+    nLike =( nLike / total_reaction) * 100
     nLove=( nLove / total_reaction) * 100
     nHaha=( nHaha / total_reaction) * 100
     nSad=( nSad / total_reaction) * 100
@@ -290,9 +290,36 @@ def classify(sentence, nLike, nLove, nHaha, nSad, nWow, nAngry, show_details=Fal
     nAngry=( nAngry / total_reaction) * 100
 
 
+    #********************* Switch Case Equivalant ************************
 
-    #print (total_reaction)
-    #print("RRRRRRRR: "+return_results[1][0])
+    #if(return_results[0][0]=="like"):
+     #   nLike = nLike + return_results[0][1] * 100
+
+    # ********************* Switch Case Equivalant ************************
+
+    for idx, val in enumerate(results):
+        print(idx, val[1])
+        if(return_results[idx][0]=="like"):
+           nLike = nLike + val[1] * 100
+
+        if (return_results[idx][0] == "love"):
+            nLove = nLove + val[1] * 100
+
+        if (return_results[idx][0] == "haha"):
+            nHaha = nHaha + val[1] * 100
+
+        if (return_results[idx][0] == "sad"):
+            nSad = nSad + val[1] * 100
+
+        if (return_results[idx][0] == "wow"):
+            nWow = nWow + val[1] * 100
+
+        if (return_results[idx][0] == "angry"):
+            nAngry = nAngry + val[1] * 100
+
+
+    print(nLike, nLove, nHaha, nWow, nSad, nAngry)
+
 
     print("classification: %s" % (return_results))
     return return_results
@@ -300,6 +327,8 @@ def classify(sentence, nLike, nLove, nHaha, nSad, nWow, nAngry, show_details=Fal
 tempStr = 'a'
 while tempStr != "":
     tempStr = input("Enter sentence: ")
+    if(tempStr == ""):
+        break
     nLike = int(input("Like = ") or "0")
     nLove = int(input("Love = ") or "0")
     nHaha = int(input("Haha = ") or "0")
@@ -309,17 +338,5 @@ while tempStr != "":
     classify(tempStr, nLike, nLove, nHaha, nSad, nWow, nAngry, show_details=True)
     print("Press only ENTER to exit")
 #classify("We are not well.",show_details=True)
-
-#***********************************************************************************************************************
-like = 2
-haha = 3
-love = 5
-sad = 0
-angry = 0
-wow = 4
-
-result = (like + haha + love + sad + angry + wow)
-
-like = (like / result) * 100 + like
 
 #***********************************************************************************************************************
