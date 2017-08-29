@@ -253,7 +253,7 @@ start_time = time.time()
 with open('synapses.json') as data_file:
     data = json.load(data_file)
 
-if(time.time()-data["datetime"])>1:
+if(time.time()-data["datetime"])>1800:
     train(X, y, hidden_neurons=20, alpha=0.1, epochs=10000, dropout=False, dropout_percent=0.2)
     elapsed_time = time.time() - start_time
     print("processing time:", elapsed_time, "seconds")
@@ -274,18 +274,52 @@ with open(synapse_file) as data_file:
     synapse_1 = np.asarray(synapse['synapse1'])
 
 
-def classify(sentence, show_details=False):
+def classify(sentence, nLike, nLove, nHaha, nSad, nWow, nAngry, show_details=False):
     results = think(sentence, show_details)
 
     results = [[i, r] for i, r in enumerate(results) if r > ERROR_THRESHOLD]
     results.sort(key=lambda x: x[1], reverse=True)
     return_results = [[classes[r[0]], r[1]] for r in results]
+
+    total_reaction = nLike + nLove + nHaha + nSad + nWow + nAngry
+    nLike=( nLike / total_reaction) * 100
+    nLove=( nLove / total_reaction) * 100
+    nHaha=( nHaha / total_reaction) * 100
+    nSad=( nSad / total_reaction) * 100
+    nWow=( nWow / total_reaction) * 100
+    nAngry=( nAngry / total_reaction) * 100
+
+
+
+    #print (total_reaction)
+    #print("RRRRRRRR: "+return_results[1][0])
+
     print("classification: %s" % (return_results))
     return return_results
 
 tempStr = 'a'
 while tempStr != "":
     tempStr = input("Enter sentence: ")
-    classify(tempStr,show_details=True)
-    print("CTRL + F2 to exit")
+    nLike = int(input("Like = ") or "0")
+    nLove = int(input("Love = ") or "0")
+    nHaha = int(input("Haha = ") or "0")
+    nSad = int(input("Sad = ") or "0")
+    nWow = int(input("Wow = ") or "0")
+    nAngry = int(input("Angry = ") or "0")
+    classify(tempStr, nLike, nLove, nHaha, nSad, nWow, nAngry, show_details=True)
+    print("Press only ENTER to exit")
 #classify("We are not well.",show_details=True)
+
+#***********************************************************************************************************************
+like = 2
+haha = 3
+love = 5
+sad = 0
+angry = 0
+wow = 4
+
+result = (like + haha + love + sad + angry + wow)
+
+like = (like / result) * 100 + like
+
+#***********************************************************************************************************************
