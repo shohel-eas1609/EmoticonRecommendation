@@ -6,46 +6,9 @@
    <sentence>I love you</sentence>
 </info>
 
-   <info>
-   <genere>love</genere>
-   <sentence>May Allah bless me</sentence>
-</info>
-
-   <info>
-   <genere>sad</genere>
-   <sentence>RIP</sentence>
-</info>
-
-      <info>
-   <genere>sad</genere>
-   <sentence>Rests in peace</sentence>
-</info>
-
-      <info>
-   <genere>sad</genere>
-   <sentence>He is no more</sentence>
-</info>
-
-      <info>
-   <genere>angry</genere>
-   <sentence>I will hit you</sentence>
-</info>
-
-
-
 <info>
    <genere>like</genere>
    <sentence>I am well</sentence>
-</info>
-
-   <info>
-   <genere>like</genere>
-   <sentence>I am a boy</sentence>
-</info>
-
-   <info>
-   <genere>like</genere>
-   <sentence>It was a good afternoon</sentence>
 </info>
 
 <info>
@@ -68,24 +31,5 @@
    <sentence>I am unhappy</sentence>
 </info>
 
-   <info>
-   <genere>wow</genere>
-   <sentence>It was amazing!</sentence>
-</info>
-
-   <info>
-   <genere>wow</genere>
-   <sentence>It was charming</sentence>
-</info>
-
- <info>
-   <genere>sad</genere>
-   <sentence>I am sick</sentence>
-</info>
-
-    <info>
-   <genere>sad</genere>
-   <sentence>I am unhappy</sentence>
-</info>
 
 </collection>
