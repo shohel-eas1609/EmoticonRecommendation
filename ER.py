@@ -253,7 +253,7 @@ start_time = time.time()
 with open('synapses.json') as data_file:
     data = json.load(data_file)
 
-if(time.time()-data["datetime"])>10:
+if(time.time()-data["datetime"])>1800:
     train(X, y, hidden_neurons=20, alpha=0.1, epochs=100000, dropout=False, dropout_percent=0.2)
     elapsed_time = time.time() - start_time
     print("processing time:", elapsed_time, "seconds")
